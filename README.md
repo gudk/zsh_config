@@ -16,7 +16,9 @@
 plugins=(zsh-syntax-highlighting z git sudo)
 
 5. 增加自动补全的功能：（incr-0.2是原版，incr是修改版）
+
 > mkdir ~/.oh-my-zsh/plugins/incr
+
 > wget https://raw.githubusercontent.com/gudk/zsh_config/master/incr/incr.zsh -O ~/.oh-my-zsh/plugins/incr/incr.zsh
 
 6. 修改.zshrc，启用自动补全：
