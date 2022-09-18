@@ -11,7 +11,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 source $HOME/.cargo/env
 if [ ! -f "$HOME/.config/rustlang/autocomplete/rustup" ]; then
   mkdir -p ~/.config/rustlang/autocomplete
-  rustup completions bash rustup >> ~/.config/rustlang/autocomplete/rustup
+  rustup completions zsh rustup >> ~/.config/rustlang/autocomplete/rustup
 fi
 source "$HOME/.config/rustlang/autocomplete/rustup"
 if ! command -v rust-analyzer &> /dev/null
@@ -295,8 +295,10 @@ plugins=(z osx sudo git zsh-syntax-highlighting)
 alias ga="git add ."
 alias gcm="git commit -m"
 alias la="ls -al"
-
+alias vi="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export EDITOR=/usr/bin/nvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
