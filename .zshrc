@@ -205,9 +205,9 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%f"
 # Visual customisation of the second prompt line
 local user_symbol="$"
-if [[ $(print -P "%#") =~ "#" ]]; then
-    user_symbol = "#"
-fi
+#if [[ $(print -P "%#") =~ "#" ]]; then
+#    user_symbol = "#"
+#fi
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%B%F{black}%K{yellow}%} $user_symbol%{%b%f%k%F{yellow}%} %{%f%}"
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=’red’
@@ -294,7 +294,6 @@ plugins=(z osx sudo git zsh-syntax-highlighting)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ga="git add ."
 alias gcm="git commit -m"
-alias la="ls -al"
 alias vi="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
