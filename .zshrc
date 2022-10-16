@@ -294,7 +294,10 @@ plugins=(z osx sudo git zsh-syntax-highlighting)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ga="git add ."
 alias gcm="git commit -m"
+alias gps="git push"
+alias gpl="git pull"
 alias vi="nvim"
+alias c.="code ."
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
