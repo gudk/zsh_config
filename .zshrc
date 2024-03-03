@@ -296,7 +296,7 @@ alias ga="git add ."
 alias gcm="git commit -m"
 alias gps="git push"
 alias gpl="git pull"
-alias vi="nvim"
+alias mi="micro"
 alias c.="code ."
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -304,3 +304,5 @@ alias c.="code ."
 export EDITOR=/usr/bin/nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(atuin init zsh)"
