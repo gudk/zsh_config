@@ -1,41 +1,94 @@
-## 自己用的zsh设置：
-1. 安装zsh，mac 自带，linux一般用ubuntu，用下面的命令:
-> apt install zsh
+# GO Simple Tunnel
 
-2. 安装oh-my-zsh:
-> sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+### GO语言实现的安全隧道
 
-或者：
+[English README](README_en.md)
 
-> sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+## 功能特性
 
-3. 安装高亮的插件zsh-syntax-highlighting：
-> git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+- [x] [多端口监听](https://gost.run/getting-started/quick-start/)
+- [x] [多级转发链](https://gost.run/concepts/chain/)
+- [x] [多协议支持](https://gost.run/tutorials/protocols/overview/)
+- [x] [TCP/UDP端口转发](https://gost.run/tutorials/port-forwarding/)
+- [x] [反向代理](https://gost.run/tutorials/reverse-proxy/)和[隧道](https://gost.run/tutorials/reverse-proxy-tunnel/)
+- [x] [TCP/UDP透明代理](https://gost.run/tutorials/redirect/)
+- [x] DNS[解析](https://gost.run/concepts/resolver/)和[代理](https://gost.run/tutorials/dns/)
+- [x] [TUN/TAP设备](https://gost.run/tutorials/tuntap/)
+- [x] [负载均衡](https://gost.run/concepts/selector/)
+- [x] [路由控制](https://gost.run/concepts/bypass/)
+- [x] [准入控制](https://gost.run/concepts/admission/)
+- [x] [限速限流](https://gost.run/concepts/limiter/)
+- [x] [插件系统](https://gost.run/concepts/plugin/)
+- [x] [Prometheus监控指标](https://gost.run/tutorials/metrics/)
+- [x] [动态配置](https://gost.run/tutorials/api/config/)
+- [x] [Web API](https://gost.run/tutorials/api/overview/)
+- [ ] Web UI
 
-4. 修改~/.zshrc文件,下面几个是自己常用的：
-plugins=(zsh-syntax-highlighting z git sudo)
+## 概览
 
-5. 增加自动补全的功能：（incr-0.2是原版，incr是修改版）
+![Overview](https://gost.run/images/overview.png)
 
-> mkdir ~/.oh-my-zsh/plugins/incr
+GOST作为隧道有三种主要使用方式。
 
-> wget https://raw.githubusercontent.com/gudk/zsh_config/master/incr/incr.zsh -O ~/.oh-my-zsh/plugins/incr/incr.zsh
+### 正向代理
 
-6. 修改.zshrc，启用自动补全：
-> echo "source ~/.oh-my-zsh/plugins/incr/incr*.zsh" >> ~/.zshrc
+作为代理服务访问网络，可以组合使用多种协议组成转发链进行转发。
 
-7.安装powerlevel10k:
+![Proxy](https://gost.run/images/proxy.png)
 
-> git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+### 端口转发
 
-8. 修改主题为p10k：
+将一个服务的端口映射到另外一个服务的端口，同样可以组合使用多种协议组成转发链进行转发。
 
-> ZSH_THEME="powerlevel10k/powerlevel10k"
+![Forward](https://gost.run/images/forward.png)
 
-9. 复制.p10k.zsh
+### 反向代理
 
-> wget https://raw.githubusercontent.com/gudk/zsh_config/master/.p10k.zsh -O ~/
+利用隧道和内网穿透将内网服务暴露到公网访问。
 
-10. source ~/.zshrc 更新配置。
+![Reverse Proxy](https://gost.run/images/reverse-proxy.png)
 
-11.暂时就这些。
+## 下载安装
+
+### 二进制文件
+
+[https://github.com/go-gost/gost/releases](https://github.com/go-gost/gost/releases)
+
+### 安装脚本
+
+```bash
+# 安装最新版本 [https://github.com/go-gost/gost/releases](https://github.com/go-gost/gost/releases)
+bash <(curl -fsSL https://github.com/go-gost/gost/raw/master/install.sh) --install
+```
+```bash
+# 选择要安装的版本
+bash <(curl -fsSL https://github.com/go-gost/gost/raw/master/install.sh)
+```
+
+### 源码编译
+
+```
+git clone https://github.com/go-gost/gost.git
+cd gost/cmd/gost
+go build
+```
+
+### Docker
+
+```
+docker run --rm gogost/gost -V
+```
+
+### Shadowsocks Android插件
+
+[xausky/ShadowsocksGostPlugin](https://github.com/xausky/ShadowsocksGostPlugin)
+
+## 帮助与支持
+
+Wiki站点：[https://gost.run](https://gost.run)
+
+Telegram讨论群：[https://t.me/gogost](https://t.me/gogost)
+
+Google讨论组：[https://groups.google.com/d/forum/go-gost](https://groups.google.com/d/forum/go-gost)
+
+旧版入口：[v2.gost.run](https://v2.gost.run)
