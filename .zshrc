@@ -15,14 +15,8 @@
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
-#
-# Input/output
-#
-
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 bindkey -e
-bindkey '^[[A' atuin-search
-
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
