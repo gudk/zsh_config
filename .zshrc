@@ -21,6 +21,8 @@ setopt HIST_IGNORE_ALL_DUPS
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 bindkey -e
+bindkey '^[[A' atuin-search
+
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -120,11 +122,6 @@ source ${ZIM_HOME}/init.zsh
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
-
-#
-# zsh-history-substring-search
-#
-
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
