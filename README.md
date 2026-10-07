@@ -1,94 +1,100 @@
-# GO Simple Tunnel
 
-### GO语言实现的安全隧道
+重新买了个新的云服务器，以前用arch linux，阿里云默认没有，这次不想折腾了。所以用默认的debian系统了。也做个记录。
 
-[English README](README_en.md)
+1. 更新系统：
 
-## 功能特性
+   ```shell
+   apt update
+   apt upgrade
+   ```
 
-- [x] [多端口监听](https://gost.run/getting-started/quick-start/)
-- [x] [多级转发链](https://gost.run/concepts/chain/)
-- [x] [多协议支持](https://gost.run/tutorials/protocols/overview/)
-- [x] [TCP/UDP端口转发](https://gost.run/tutorials/port-forwarding/)
-- [x] [反向代理](https://gost.run/tutorials/reverse-proxy/)和[隧道](https://gost.run/tutorials/reverse-proxy-tunnel/)
-- [x] [TCP/UDP透明代理](https://gost.run/tutorials/redirect/)
-- [x] DNS[解析](https://gost.run/concepts/resolver/)和[代理](https://gost.run/tutorials/dns/)
-- [x] [TUN/TAP设备](https://gost.run/tutorials/tuntap/)
-- [x] [负载均衡](https://gost.run/concepts/selector/)
-- [x] [路由控制](https://gost.run/concepts/bypass/)
-- [x] [准入控制](https://gost.run/concepts/admission/)
-- [x] [限速限流](https://gost.run/concepts/limiter/)
-- [x] [插件系统](https://gost.run/concepts/plugin/)
-- [x] [Prometheus监控指标](https://gost.run/tutorials/metrics/)
-- [x] [动态配置](https://gost.run/tutorials/api/config/)
-- [x] [Web API](https://gost.run/tutorials/api/overview/)
-- [ ] Web UI
 
-## 概览
+2. 安装zsh：
 
-![Overview](https://gost.run/images/overview.png)
+   `apt install zsh`
 
-GOST作为隧道有三种主要使用方式。
+3. 更改默认SHELL：
 
-### 正向代理
+   `chsh -s $(which zsh)`
 
-作为代理服务访问网络，可以组合使用多种协议组成转发链进行转发。
+4. 安装micro，一个轻量级的命令行编辑器，debian默认有vi，不安装也可以。：
 
-![Proxy](https://gost.run/images/proxy.png)
+   `apt install micro`
 
-### 端口转发
+   如果要默认编辑器改成 micro，比如 crontab，可以 ：select-editor 或者加
 
-将一个服务的端口映射到另外一个服务的端口，同样可以组合使用多种协议组成转发链进行转发。
+   ```bash
+   export EDITOR=/usr/bin/micro
+   ```
 
-![Forward](https://gost.run/images/forward.png)
+   
 
-### 反向代理
+5. 安装zimfw：
 
-利用隧道和内网穿透将内网服务暴露到公网访问。
+   `curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh`
 
-![Reverse Proxy](https://gost.run/images/reverse-proxy.png)
+6. 安装atuin,一个保存shell历史记录的工具：
 
-## 下载安装
+   ```shell
+   bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
+   ```
 
-### 二进制文件
+7. 安装git：
 
-[https://github.com/go-gost/gost/releases](https://github.com/go-gost/gost/releases)
+   `apt install git`
 
-### 安装脚本
+8. 克隆自己的相关配置：
 
-```bash
-# 安装最新版本 [https://github.com/go-gost/gost/releases](https://github.com/go-gost/gost/releases)
-bash <(curl -fsSL https://github.com/go-gost/gost/raw/master/install.sh) --install
-```
-```bash
-# 选择要安装的版本
-bash <(curl -fsSL https://github.com/go-gost/gost/raw/master/install.sh)
-```
+   `git clone https://github.com/gudk/zsh_config.git`
 
-### 源码编译
+9. 切换到zsh后，复制相关文件：
 
-```
-git clone https://github.com/go-gost/gost.git
-cd gost/cmd/gost
-go build
-```
+   ```shell
+   cp .zshrc ~/
+   cp .zimrc ~/
+   cp .p10k.zsh ~/
+   cp .gitconfig ~/
+   source ~/.zshrc
+   ```
 
-### Docker
+10. 基本配置完成，重新登录一下就能看到效果了。
 
-```
-docker run --rm gogost/gost -V
-```
+11. ssh相关配置可以用sftp上传，这样下次登录就不用输入帐号密码了。
 
-### Shadowsocks Android插件
+12. hugo相关命令：hugo server -e production --liveReloadPort 443 --baseURL "https://xxx.xx"，有个注意点，hugo的主题是submodule模式提供的，要先git submodule init;git submodule update。
 
-[xausky/ShadowsocksGostPlugin](https://github.com/xausky/ShadowsocksGostPlugin)
+13. 阿里云链接github不太顺畅，老是会断掉，所以有时候git需要用代理。
 
-## 帮助与支持
+    `docer run -dt -p 127.0.0.1:8888:8888 gogost/gost -L socks5://:8888 -F http2://xxx:xxx@netip:1443 `
 
-Wiki站点：[https://gost.run](https://gost.run)
+    `git config --global http.proxy socks5://127.0.0.1:8888`
 
-Telegram讨论群：[https://t.me/gogost](https://t.me/gogost)
+14. 如果要使用tmux，可以使用下面的配置。
 
-Google讨论组：[https://groups.google.com/d/forum/go-gost](https://groups.google.com/d/forum/go-gost)
+    ```shell
+    $ cd ~
+    $ git clone https://github.com/gpakosz/.tmux.git
+    $ ln -s -f .tmux/.tmux.conf
+    $ cp .tmux/.tmux.conf.local .
+    ```
 
-旧版入口：[v2.gost.run](https://v2.gost.run)
+15. 安装docker：
+
+    参考：https://docs.docker.com/engine/install/debian/#installation-methods
+
+16. 安装nginx：
+
+    ```shell
+    apt install nginx
+    ```
+
+17. 安装cerbot：
+
+    ```shell
+    apt install cerbot python3-cerbot-nginx
+    ```
+
+18. debian的crobtab -e 要用到neovim。rust要安装rust-all。
+
+    
+

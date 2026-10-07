@@ -288,10 +288,6 @@ export EDITOR=/usr/bin/micro
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ga="git add ."
-alias gcm="git commit -m"
-alias gps="git push"
-alias gpl="git pull"
 alias mi="micro"
 alias c.="code ."
 
